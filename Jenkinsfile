@@ -17,9 +17,9 @@ pipeline {
 
       stage('Fire Up docker-compose') {
         steps {
-            script{
-            sh "docker-compose build"
-            }
+           script {
+            dockerImage = docker.build("wolfmoon69/test-test")
+             }
 //             step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: true])
 //                 sh 'docker-compose up -d volume && sleep 5'
 //                 sh 'docker-compose up -d config-seed && sleep 60'
