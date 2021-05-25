@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: wolfmoon69/strikersoft-swarm-app
+    volumes:
+      - nginx:/usr/share/nginx/html
+    environment:
+      - nickname=InputName
+    ports:
+      - 3456:80
+    depends_on:
+      - pgadmin
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+
+volumes:
+  postgres:
+  nginx:
+
