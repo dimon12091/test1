@@ -10,7 +10,7 @@ pipeline {
             checkout([
               $class: 'GitSCM',
               branches: [[name: 'master']],
-              userRemoteConfigs: [[credentialsId: 'github-ssh-key', url: 'git@github.com:dimon12091/strikersoft-test-app.git']]
+              userRemoteConfigs: [[credentialsId: 'github-ssh-key', url: 'git@github.com:dimon12091/test1.git']]
             ])
             }
         }
