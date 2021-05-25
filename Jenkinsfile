@@ -17,7 +17,7 @@ pipeline {
 
       stage('Fire Up docker-compose') {
         steps {
-            scripts{
+            script{
             sh "docker-compose build"
             }
 //             step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: true])
