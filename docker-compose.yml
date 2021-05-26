@@ -12,7 +12,8 @@ services:
     ports:
       - 3456:80
     depends_on:
-      - pgadmin
+      - postgres
+
 
   postgres:
     image: postgres
