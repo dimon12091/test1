@@ -50,6 +50,12 @@ pipeline {
             ])
         }
     }
+    stage('Cloning our Git') {
+        steps {
+            git 'git@github.com:dimon12091/test1.git'
+
+         }
+    }
     stage('Building image') {
       steps{
         script {
