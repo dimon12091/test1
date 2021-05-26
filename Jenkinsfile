@@ -54,18 +54,16 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-
-        sh 'id'
-        sh 'whoami'
-        app = docker.build registry + ":$BUILD_NUMBER"
+           app = sh 'docker-compose build'
+//         app = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Push Image') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
-            app.push()
+           docker.withRegistry( '', registryCredential ) {
+           app.push()
           }
         }
       }

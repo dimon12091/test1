@@ -1,6 +1,9 @@
 version: "3.9"
 services:
   app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: wolfmoon69/strikersoft-swarm-app
     volumes:
       - nginx:/usr/share/nginx/html
