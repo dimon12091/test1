@@ -55,7 +55,8 @@ pipeline {
       steps{
         script {
           sh 'ls'
-          sh 'chmod 666 /var/run/docker.sock'
+          sh 'id'
+          sh 'sudo chmod 666 /var/run/docker.sock'
           app = docker.build("test-image") + ":$BUILD_NUMBER"
         }
       }
