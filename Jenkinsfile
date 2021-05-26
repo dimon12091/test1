@@ -54,8 +54,9 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-           app = ([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartService'], useCustomDockerComposeFile: false])
-//         app = docker.build registry + ":$BUILD_NUMBER"
+//            app = ([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartService'], useCustomDockerComposeFile: false])
+        app = docker-compose.build
+//         registry + ":$BUILD_NUMBER"
         }
       }
     }
