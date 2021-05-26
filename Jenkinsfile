@@ -54,8 +54,8 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-        sh 'sudo usermod -aG docker $USER'
-        sh 'groups'
+        sh 'id'
+        sh 'whoami'
           app = docker.build registry + ":$BUILD_NUMBER"
         }
       }
