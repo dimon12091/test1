@@ -71,7 +71,7 @@ pipeline {
       }
     }
     stage('Deploy Swarm') {
-        sshagent(['docker_swarm_ssh']) {
+        sshagent(credentials: ['docker_swarm_ssh']) {
             sh 'ssh -o StrictHostKeyChecking=no bloodlifegame27@104.154.26.5 docker node ls'
         }
     }
