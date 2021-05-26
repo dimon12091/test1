@@ -41,6 +41,15 @@ pipeline {
   }
   agent any
   stages {
+    stage("SCM") {
+        steps {
+            checkout([
+              $class: 'GitSCM',
+              branches: [[name: 'master']],
+              userRemoteConfigs: [[credentialsId: 'github-ssh-key', url: 'git@github.com:dimon12091/test1.git']]
+            ])
+        }
+    }
     stage('Building image') {
       steps{
         script {
