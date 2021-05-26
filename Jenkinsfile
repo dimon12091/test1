@@ -53,7 +53,7 @@ pipeline {
         }
     }
     stage('Building image') {
-      steps{
+      steps {
         script {
 //            app = ([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartService'], useCustomDockerComposeFile: false])
         app = docker.build registry + ":$BUILD_NUMBER"
@@ -62,7 +62,7 @@ pipeline {
       }
     }
     stage('Push Image') {
-      steps{
+      steps {
         script {
            docker.withRegistry( '', registryCredential ) {
            app.push()
@@ -72,7 +72,7 @@ pipeline {
     }
     stage('Deploy Swarm') {
         sshagent(['docker_swarm_ssh']) {
-            sh 'ssh -o StrictHostKeyChecking=no bloodlifegame27@104.154.26.5'
+            sh 'ssh -o StrictHostKeyChecking=no bloodlifegame27@104.154.26.5 docker node ls'
         }
     }
   }
