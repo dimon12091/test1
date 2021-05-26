@@ -54,6 +54,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
+        sh 'docker version'
         sh 'id'
         sh 'whoami'
           app = docker.build registry + ":$BUILD_NUMBER"
