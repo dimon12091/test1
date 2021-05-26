@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registryCredential = 'dockerhub'
-        dockerImage = ''
+        app = ''
     }
     agent any
     stages {
@@ -12,9 +12,8 @@ pipeline {
               branches: [[name: 'master']],
               userRemoteConfigs: [[credentialsId: 'github-ssh-key', url: 'git@github.com:dimon12091/test1.git']]
             ])
-            }
         }
-
+      }
       stage('Build') {
          app = docker.build("wolfmoon69/test1")
       }
@@ -24,10 +23,12 @@ pipeline {
          }
       }
       stage('Push image') {
-       docker.withRegistry('https://registry.hub.docker.com', 'git') {
-       app.push("${env.BUILD_NUMBER}")
-       app.push("latest")
-              }
-           }
+        docker.withRegistry('https://registry.hub.docker.com', 'git') {
+        app.push("${env.BUILD_NUMBER}")
+        app.push("latest")
+        }
+      }
     }
 }
+
+
