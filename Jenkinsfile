@@ -39,6 +39,7 @@ pipeline {
     registry = "wolfmoon69/test1"
     registryCredential = 'dockerhub'
     app = ''
+    appv1 = ''
   }
   agent any
   stages {
@@ -55,8 +56,8 @@ pipeline {
       steps{
         script {
 //            app = ([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartService'], useCustomDockerComposeFile: false])
-        app = docker-compose.build
-//         registry + ":$BUILD_NUMBER"
+//         app = docker.build registry + ":$BUILD_NUMBER"
+        appv1 = dockerComposeFile.build("wolfmoon69/test2") + ":$BUILD_NUMBER"
         }
       }
     }
@@ -64,7 +65,7 @@ pipeline {
       steps{
         script {
            docker.withRegistry( '', registryCredential ) {
-           app.push()
+           appv1.push()
           }
         }
       }
