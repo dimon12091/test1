@@ -70,7 +70,7 @@ pipeline {
         }
       }
     }
-    stage('Deploy Swarm'){
+    stage('Deploy Swarm') {
         sshagent(['docker_swarm_ssh']) {
             sh 'ssh -o StrictHostKeyChecking=no bloodlifegame27@104.154.26.5'
         }
