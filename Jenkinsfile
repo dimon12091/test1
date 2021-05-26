@@ -55,9 +55,6 @@ pipeline {
       steps{
         script {
           sh 'ls'
-          sh 'groupadd docker'
-          sh 'usermod -aG docker $USER'
-          sh 'chmod 666 /var/run/docker.sock'
           app = docker.build("test-image") + ":$BUILD_NUMBER"
         }
       }
