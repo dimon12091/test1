@@ -56,8 +56,8 @@ pipeline {
       steps{
         script {
 //            app = ([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartService'], useCustomDockerComposeFile: false])
-//         app = docker.build registry + ":$BUILD_NUMBER"
-        appv1 = dockerComposeFile.build("wolfmoon69/test2") + ":$BUILD_NUMBER"
+        app = docker.build registry + ":$BUILD_NUMBER"
+//         app = dockerComposeFile.build("wolfmoon69/test2") + ":$BUILD_NUMBER"
         }
       }
     }
@@ -65,10 +65,15 @@ pipeline {
       steps{
         script {
            docker.withRegistry( '', registryCredential ) {
-           appv1.push()
+           app.push()
           }
         }
       }
+    }
+    stage('Deploy Swarm'){
+        sshagent(['docker_swarm_ssh']) {
+            sh 'ssh -o StrictHostKeyChecking=no bloodlifegame27@104.154.26.5'
+        }
     }
   }
 }
