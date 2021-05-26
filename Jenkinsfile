@@ -54,11 +54,12 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-        sh 'docker version'
+
         sh 'id'
         sh 'whoami'
         sh 'newgrp docker '
         sh 'usermod -a -G docker $USER'
+         sh 'docker version'
         app = docker.build registry + ":$BUILD_NUMBER"
         }
       }
