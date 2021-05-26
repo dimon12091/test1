@@ -58,7 +58,7 @@ pipeline {
         sh 'id'
         sh 'whoami'
         sh 'newgrp docker '
-        sh ' usermod -a -G docker $USER'
+        sh 'usermod -a -G docker $USER'
         app = docker.build registry + ":$BUILD_NUMBER"
         }
       }
