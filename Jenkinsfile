@@ -38,7 +38,7 @@ pipeline {
     environment {
     registry = "wolfmoon69/test1"
     registryCredential = 'dockerhub'
-    app = ``
+    app = ''
   }
   agent any
   stages {
