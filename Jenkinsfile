@@ -54,6 +54,9 @@ pipeline {
     stage('Building image') {
       steps{
         script {
+          sh 'ls'
+          sh 'sudo groupadd docker'
+          sh 'sudo usermod -aG docker $USER'
           app = docker.build("test-image") + ":$BUILD_NUMBER"
         }
       }
