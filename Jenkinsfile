@@ -39,7 +39,6 @@ pipeline {
     registry = "wolfmoon69/test1"
     registryCredential = 'dockerhub'
     app = ''
-    appv1 = ''
   }
   agent any
   stages {
@@ -71,9 +70,12 @@ pipeline {
       }
     }
     stage('Deploy Swarm') {
-        sshagent(credentials: ['docker_swarm_ssh']) {
-            sh 'ssh -o StrictHostKeyChecking=no bloodlifegame27@104.154.26.5 docker node ls'
+        steps{
+            sshagent(credentials: ['docker_swarm_ssh']) {
+                sh 'ssh -o StrictHostKeyChecking=no bloodlifegame27@104.154.26.5 docker node ls'
+            }
         }
+
     }
   }
 }
