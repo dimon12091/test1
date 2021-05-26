@@ -38,6 +38,7 @@ pipeline {
     environment {
     registry = "wolfmoon69/test1"
     registryCredential = 'dockerhub'
+    app = ``
   }
   agent any
   stages {
@@ -50,16 +51,10 @@ pipeline {
             ])
         }
     }
-    stage('Cloning our Git') {
-        steps {
-            git 'git@github.com:dimon12091/test1.git'
-
-         }
-    }
     stage('Building image') {
       steps{
         script {
-          docker.build("test-image") + ":$BUILD_NUMBER"
+          app = docker.build("test-image") + ":$BUILD_NUMBER"
         }
       }
     }
