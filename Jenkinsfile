@@ -15,19 +15,23 @@ pipeline {
         }
       }
       stage('Build') {
-         app = docker.build("wolfmoon69/test1")
-      }
-      stage('Test image') {
-         app.inside {
-            sh 'echo "Tests passed"'
-         }
-      }
-      stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'git') {
-        app.push("${env.BUILD_NUMBER}")
-        app.push("latest")
+        steps{
+            scripts{
+                app = docker.build("wolfmoon69/test1")
+            }
         }
       }
+//       stage('Test image') {
+//          app.inside {
+//             sh 'echo "Tests passed"'
+//          }
+//       }
+//       stage('Push image') {
+//         docker.withRegistry('https://registry.hub.docker.com', 'git') {
+//         app.push("${env.BUILD_NUMBER}")
+//         app.push("latest")
+//         }
+//       }
     }
 }
 
