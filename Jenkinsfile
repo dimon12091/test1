@@ -72,7 +72,8 @@ pipeline {
     stage('Deploy Swarm') {
         steps{
             sshagent(credentials: ['docker_swarm_ssh']) {
-                sh 'scp -o StrictHostKeyChecking=no docker-compose.yml bloodlifegame27@104.154.26.5'
+            sh 'ls'
+                sh 'scp -o StrictHostKeyChecking=no docker-compose.yml bloodlifegame27@104.154.26.5:'
                 sh 'ssh -o StrictHostKeyChecking=no bloodlifegame27@104.154.26.5 docker stack deploy --prune --compose-file docker-compose.yml app-test'
 
             }
